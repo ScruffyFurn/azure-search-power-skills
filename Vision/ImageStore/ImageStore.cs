@@ -51,11 +51,8 @@ namespace AzureCognitiveSearch.PowerSkills.Vision.ImageStore
                     var imageData = inRecord.Data["imageData"] as string;
                     var imageName = Guid.NewGuid().ToString();
                     
-                    var mimeType = inRecord.Data["mimeType"] as string;
-                    if (String.IsNullOrEmpty(mimeType))
-                    {
-                        mimeType = "image/jpeg";
-                    }
+                    var mimeType = "image/jpeg";
+                    
                     string imageUri = await imageStore.UploadToBlobAsync(imageData, imageName, mimeType);
                     outRecord.Data["imageStoreUri"] = imageUri;
                     return outRecord;
